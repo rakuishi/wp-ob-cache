@@ -74,8 +74,10 @@ class WordPressOBCache {
 	 */
 	public function uninstall() {
 		foreach (scandir($this->cache_dir) as $filename) {
-    if ($filename == '.' || $filename == '..') continue;
-    	unlink($this->cache_dir . DIRECTORY_SEPARATOR . $filename);
+			if ($filename == '.' || $filename == '..') {
+				continue;
+			}
+			unlink($this->cache_dir . $filename);
 		}
 		rmdir($this->cache_dir);
 	}
