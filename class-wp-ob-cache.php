@@ -22,6 +22,10 @@ class WordPressOBCache {
 			chmod($this->cache_dir, 0777);
 		}
 
+		if (is_user_logged_in()) {
+			return;
+		}
+
 		$url = $_SERVER['REQUEST_URI'];
 		if ($this->is_skip_url($url)) {
 			return;
@@ -47,7 +51,6 @@ class WordPressOBCache {
 		$skip_url_array = array(
 			'/wp-admin/',
 			'/wp-login.php',
-			'preview=true',
 		);
 
 		foreach ($skip_url_array as $skip_url) {
