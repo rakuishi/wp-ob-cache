@@ -63,10 +63,7 @@ class WordPressOBCache {
 	}
 
 	public function is_available_cache_file($filename) {
-		return boolval(
-			is_file($filename) &&
-			filemtime($filename) > time() - 60
-		);
+		return (is_file($filename) && filemtime($filename) > time() - 3 * 60);
 	}
 	
 	/**
